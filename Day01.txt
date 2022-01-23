@@ -1,0 +1,124 @@
+Database Management System (DBMS):
+
+ Data Base:
+
+->  Collection of information
+
+DBMS ->   It's a process of managing database.
+
+ SQL ->      Structured Query Language. 
+
+SQL is a database computer language designed for the retrieval and management of data in a relational database.
+SQL stands for Structured Query Language. This tutorial will give you a quick start to SQL.
+
+
+What is RDBMS?
+RDBMS stands for Relational Database Management System.
+
+
+
+The data in an RDBMS is stored in database objects which are called as tables.
+
+  employee
++----+----------+-----+-----------+----------+
+| ID | NAME     | AGE | ADDRESS   | SALARY   |
++----+----------+-----+-----------+----------+
+|  1 | Ramesh   |  32 | Ahmedabad |  2000.00 |
+|  2 | Khilan   |  25 | Delhi     |  1500.00 |
+|  3 | kaushik  |  23 | Kota      |  2000.00 |
+|  4 | Chaitali |  25 | Mumbai    |  6500.00 |
+|  5 | Hardik   |  27 | Bhopal    |  8500.00 |
+|  6 | Komal    |  22 | MP        |  4500.00 |
+|  7 | Muffy    |  24 | Indore    | 10000.00 |
++----+----------+-----+-----------+----------+
+
+C:\WINDOWS\system32>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.20 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| adonis             |
+| aic                |
+| edgeservice        |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+9 rows in set (0.01 sec)
+
+mysql> create database test_db;
+Query OK, 1 row affected (0.27 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| adonis             |
+| aic                |
+| edgeservice        |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| test_db            |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> select  * from brand;
+ERROR 1046 (3D000): No database selected
+mysql> use aic;
+Database changed
+mysql> select * from brand;
+ERROR 1146 (42S02): Table 'aic.brand' doesn't exist
+mysql> show tables;
++----------------------+
+| Tables_in_aic        |
++----------------------+
+| adonis_schema        |
+| axiva_items          |
+| borosil_items        |
+| brands               |
+| divisions            |
+| eutech_items         |
+| genaxy_items         |
+| hplc_items           |
+| invitrogen_items     |
+| kimberly_clark_items |
+| mag_genome_items     |
+| orders               |
+| permission_role      |
+| permission_user      |
+| permissions          |
+| products             |
+| qiagen_items         |
+| riviera_items        |
+| role_user            |
+| roles                |
+| srl_items            |
+| sterimed_items       |
+| tarson_items         |
+| tokens               |
+| users                |
+| waters_items         |
++----------------------+
+26 rows in set (0.02 sec)
+
+mysql>
