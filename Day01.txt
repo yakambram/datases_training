@@ -1,6 +1,7 @@
 Database Management System (DBMS):
+==================================
 
- Data Base:
+Database:
 
 ->  Collection of information
 
