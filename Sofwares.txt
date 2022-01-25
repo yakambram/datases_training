@@ -1,0 +1,4 @@
+1. MySql install
+2. Git install  (optional)
+3. MYsql CLient MYSQL WORKBrench( HiedSQL)
+4. Practice database commands in first Day class.
