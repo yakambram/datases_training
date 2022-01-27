@@ -1,0 +1,166 @@
+Microsoft Windows [Version 10.0.22000.438]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\yakam>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 803
+Server version: 8.0.20 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databses;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databses' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| adonis             |
+| aic                |
+| department         |
+| edgeservice        |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| test_db            |
+| world              |
++--------------------+
+11 rows in set (0.05 sec)
+
+mysql> use test_db
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_test_db |
++-------------------+
+| customers         |
++-------------------+
+1 row in set (0.10 sec)
+
+mysql> Desc customers
+    -> ;
++---------+---------------+------+-----+---------+-------+
+| Field   | Type          | Null | Key | Default | Extra |
++---------+---------------+------+-----+---------+-------+
+| ID      | int           | NO   | PRI | NULL    |       |
+| NAME    | varchar(20)   | NO   |     | NULL    |       |
+| AGE     | int           | NO   |     | NULL    |       |
+| ADDRESS | varchar(25)   | YES  |     | NULL    |       |
+| SALARY  | decimal(18,2) | YES  |     | NULL    |       |
++---------+---------------+------+-----+---------+-------+
+5 rows in set (0.04 sec)
+
+mysql> select * from customers;
++----+----------+-----+-----------+---------+
+| ID | NAME     | AGE | ADDRESS   | SALARY  |
++----+----------+-----+-----------+---------+
+|  1 | Ramesh   |  32 | Ahmedabad | 2000.00 |
+|  2 | Khilan   |  25 | Delhi     | 1500.00 |
+|  3 | kaushik  |  23 | Kota      | 2000.00 |
+|  4 | Chaitali |  25 | Mumbai    | 6500.00 |
+|  5 | Hardik   |  27 | Bhopal    | 8500.00 |
+|  6 | Komal    |  22 | MP        | 4500.00 |
+|  7 | YK       |  32 | Hyderabad | 8000.00 |
+|  8 | Srinivas |  32 | NULL      |    NULL |
++----+----------+-----+-----------+---------+
+8 rows in set (0.06 sec)
+
+mysql> update customers set address= 'Pune'  where  id=6;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from customers;
++----+----------+-----+-----------+---------+
+| ID | NAME     | AGE | ADDRESS   | SALARY  |
++----+----------+-----+-----------+---------+
+|  1 | Ramesh   |  32 | Ahmedabad | 2000.00 |
+|  2 | Khilan   |  25 | Delhi     | 1500.00 |
+|  3 | kaushik  |  23 | Kota      | 2000.00 |
+|  4 | Chaitali |  25 | Mumbai    | 6500.00 |
+|  5 | Hardik   |  27 | Bhopal    | 8500.00 |
+|  6 | Komal    |  22 | Pune      | 4500.00 |
+|  7 | YK       |  32 | Hyderabad | 8000.00 |
+|  8 | Srinivas |  32 | NULL      |    NULL |
++----+----------+-----+-----------+---------+
+8 rows in set (0.00 sec)
+
+mysql> update customers set salary=8000;
+Query OK, 7 rows affected (0.10 sec)
+Rows matched: 8  Changed: 7  Warnings: 0
+
+mysql> select * from customers;
++----+----------+-----+-----------+---------+
+| ID | NAME     | AGE | ADDRESS   | SALARY  |
++----+----------+-----+-----------+---------+
+|  1 | Ramesh   |  32 | Ahmedabad | 8000.00 |
+|  2 | Khilan   |  25 | Delhi     | 8000.00 |
+|  3 | kaushik  |  23 | Kota      | 8000.00 |
+|  4 | Chaitali |  25 | Mumbai    | 8000.00 |
+|  5 | Hardik   |  27 | Bhopal    | 8000.00 |
+|  6 | Komal    |  22 | Pune      | 8000.00 |
+|  7 | YK       |  32 | Hyderabad | 8000.00 |
+|  8 | Srinivas |  32 | NULL      | 8000.00 |
++----+----------+-----+-----------+---------+
+8 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from customers;
++----+----------+-----+-----------+---------+
+| ID | NAME     | AGE | ADDRESS   | SALARY  |
++----+----------+-----+-----------+---------+
+|  1 | Ramesh   |  32 | Ahmedabad | 8000.00 |
+|  2 | Khilan   |  25 | Delhi     | 8000.00 |
+|  3 | kaushik  |  23 | Kota      | 8000.00 |
+|  4 | Chaitali |  25 | Mumbai    | 8000.00 |
+|  5 | Hardik   |  27 | Bhopal    | 8000.00 |
+|  6 | Komal    |  22 | Pune      | 8000.00 |
+|  7 | YK       |  32 | Hyderabad | 8000.00 |
+|  8 | Srinivas |  32 | NULL      | 8000.00 |
++----+----------+-----+-----------+---------+
+8 rows in set (0.00 sec)
+
+mysql> update customers set address= 'Pune', salary=10000  where  id=7 AND name='YK' AND  age=32;
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from customers;
++----+----------+-----+-----------+----------+
+| ID | NAME     | AGE | ADDRESS   | SALARY   |
++----+----------+-----+-----------+----------+
+|  1 | Ramesh   |  32 | Ahmedabad |  8000.00 |
+|  2 | Khilan   |  25 | Delhi     |  8000.00 |
+|  3 | kaushik  |  23 | Kota      |  8000.00 |
+|  4 | Chaitali |  25 | Mumbai    |  8000.00 |
+|  5 | Hardik   |  27 | Bhopal    |  8000.00 |
+|  6 | Komal    |  22 | Pune      |  8000.00 |
+|  7 | YK       |  32 | Pune      | 10000.00 |
+|  8 | Srinivas |  32 | NULL      |  8000.00 |
++----+----------+-----+-----------+----------+
+8 rows in set (0.00 sec)
+
+mysql> update customers set address= 'Pune', salary=10000  where  id=7 AND name='YK' AND  age=32;
+
+SELECT * FROM customers;
+
+update customers set address= 'Pune', salary=10000  where  id=7 AND name='YK' AND  age=32;
+
+
+DELETE from customers;
+
+SELECT * FROM customers WHERE NAME LIKE 'K%';
+
+SELECT * FROM customers WHERE NAME LIKE 'koma_';
+
+SELECT * FROM customers WHERE NAME LIKE  '_omal';
+
+SELECT * FROM customers WHERE salary  LIKE '%10%';
